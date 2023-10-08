@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        #countdown {
+            font-size: 36px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">00:00:00</div>
+    <script>
+        // Set the countdown time (in seconds)
+        const countdownTime = 3600; // 1 hour
+
+        const countdownDisplay = document.getElementById('countdown');
+
+        function updateCountdown() {
+            const hours = Math.floor(countdownTime / 3600);
+            const minutes = Math.floor((countdownTime % 3600) / 60);
+            const seconds = countdownTime % 60;
+
+            const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            countdownDisplay.textContent = formattedTime;
+
+            if (countdownTime > 0) {
+                countdownTime--;
+                setTimeout(updateCountdown, 1000); // Update the countdown every 1 second
+            } else {
+                countdownDisplay.textContent = '00:00:00';
+                // Handle what happens when the countdown reaches zero here
+            }
+        }
+
+        // Start the countdown
+        updateCountdown();
+    </script>
+</body>
+</html>
